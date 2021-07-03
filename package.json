@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "gen-css": "npx create-tailwind-rn"
   },
   "dependencies": {
     "expo": "~42.0.0",
@@ -14,13 +15,18 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-safe-area-context": "^3.2.0",
+    "react-native-uuid": "^2.0.1",
+    "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
-    "tailwind-rn": "^3.0.1"
+    "tailwind-rn": "^3.0.1",
+    "tailwindcss": "^2.2.4",
+    "zustand": "^3.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "@types/react-native-vector-icons": "^6.4.7",
     "typescript": "~4.0.0"
   },
   "private": true
