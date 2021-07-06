@@ -126,7 +126,7 @@ module.exports = {
   variants: {
     backgroundColor: ({ after }) => after(["disabled"]),
     textColor: ({ after }) => after(["disabled"]),
-    scrollbar: ["rounded", "dark"],
+    position: ["hover", "focus"],
     minWidth: ["responsive"],
   },
 };
