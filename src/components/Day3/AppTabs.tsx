@@ -4,12 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Center from "./Center";
 import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-const Home = () => (
-  <Center>
-    <Text>Home</Text>
-  </Center>
-);
+import HomeStack from "./HomeStack";
 
 const Search = () => (
   <Center>
@@ -26,12 +21,13 @@ const AppTabs: React.FC = ({}) => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Home") {
-            iconName = focused
-              ? "information-circle"
-              : "information-circle-outline";
-          } else if (route.name === "Search") {
-            iconName = focused ? "ios-search" : "search-outline";
+          switch (route.name) {
+            case "Home":
+              iconName = focused ? "home-sharp" : "home-outline";
+              break;
+            case "Search":
+              iconName = focused ? "ios-search" : "search-outline";
+              break;
           }
 
           // You can return any component that you like here!
@@ -44,7 +40,7 @@ const AppTabs: React.FC = ({}) => {
         labelStyle: { fontSize: 14 },
       }}
     >
-      <Tabs.Screen options={{}} name="Home" component={Home} />
+      <Tabs.Screen name="Home" component={HomeStack} />
       <Tabs.Screen name="Search" component={Search} />
     </Tabs.Navigator>
   );

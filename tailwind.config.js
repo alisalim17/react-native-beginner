@@ -39,8 +39,9 @@ module.exports = {
     },
     width: (theme) => ({
       auto: "auto",
+      full: "100%",
       ...theme("spacing"),
-      375: "375px",
+      150: "150px",
       "1/6": "16%",
     }),
 
