@@ -1,3 +1,4 @@
+import { DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import faker from "faker";
 import React, { useContext } from "react";
@@ -13,6 +14,10 @@ const Stack = createStackNavigator<HomeParamList>();
 
 const Feed: React.FC<HomeStackNavProps<"Feed">> = ({ navigation }) => (
   <Center>
+    <Button
+      title="Toggle Drawer"
+      onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+    />
     <FlatList
       style={tailwind("w-full")}
       data={Array.from(Array(50), () => faker.commerce.product())}
@@ -44,7 +49,7 @@ const HeaderRightFeed = () => {
 const HomeStack = () => {
   return (
     <Stack.Navigator initialRouteName="Feed">
-      {addProductRoutes(Stack)}
+      {addProductRoutes(Stack as any)}
       <Stack.Screen
         options={{ headerRight: HeaderRightFeed }}
         name="Feed"
