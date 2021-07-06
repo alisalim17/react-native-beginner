@@ -1,13 +1,13 @@
+import { RouteProp } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { MutableRefObject } from "react";
-
-interface Product {
-  name: string;
-}
-
-type EditProduct = { submit?: MutableRefObject<() => void> } & Product;
+import { ProductParamList } from "./ProductParamList";
 
 export type SearchParamList = {
   Search: undefined;
-  Product: Product;
-  EditProduct: EditProduct;
+} & ProductParamList;
+
+export type SearchStackNavProps<T extends keyof SearchParamList> = {
+  navigation: StackNavigationProp<SearchParamList, T>;
+  route: RouteProp<SearchParamList, T>;
 };
