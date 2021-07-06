@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { useContext } from "react";
-import { Button, FlatList, Text } from "react-native";
+import { Button, FlatList, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import { HomeParamList, HomeStackNavProps } from "../../utils/HomeParamList";
 import { tailwind } from "../../utils/tailwind";
@@ -9,6 +9,9 @@ import { AuthContext } from "./AuthProvider";
 import Center from "./Center";
 import faker from "faker";
 import uuid from "react-native-uuid";
+import { useRef } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Stack = createStackNavigator<HomeParamList>();
 
@@ -36,18 +39,68 @@ const Product: React.FC<HomeStackNavProps<"Product">> = ({
   route: {
     params: { name },
   },
+  navigation,
 }) => (
   <Center>
     <Text>{name}</Text>
+    <Button
+      title="Edit this product"
+      onPress={() => navigation.navigate("EditProduct", { name })}
+    />
   </Center>
 );
 
-const HeaderRight = () => {
+const apiCall = (x: any) => x;
+
+const EditProduct: React.FC<HomeStackNavProps<"EditProduct">> = ({
+  route: {
+    params: { name },
+  },
+
+  navigation,
+}) => {
+  const [formState] = useState({});
+  const submit = useRef(() => {});
+
+  submit.current = () => {
+    // some api call goes here
+    apiCall(formState);
+    navigation.goBack();
+  };
+
+  useEffect(() => {
+    navigation.setParams({ submit });
+  }, []);
+
+  return (
+    <Center>
+      <Text>editing {name}...</Text>
+    </Center>
+  );
+};
+
+const HeaderRightFeed = () => {
   const { logout } = useContext(AuthContext);
   return (
-    <View style={tailwind("mr-1")}>
-      <Button title="Logout" onPress={logout} />
-    </View>
+    // @todo Maybe make this a dynamic component for re-usability
+    <TouchableOpacity style={tailwind("mr-2")} onPress={logout}>
+      <Text style={tailwind("text-accent")}>Logout</Text>
+    </TouchableOpacity>
+  );
+};
+
+const HeaderRightEditProduct: React.FC<HomeStackNavProps<"EditProduct">> = ({
+  route: { params },
+}) => {
+  console.log("params", params);
+  return (
+    // @todo Maybe make this a dynamic component for re-usability
+    <TouchableOpacity
+      style={tailwind("mr-2")}
+      onPress={() => params?.submit?.current()}
+    >
+      <Text style={tailwind("text-accent")}>Done</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -55,7 +108,7 @@ const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        options={{ headerRight: HeaderRight }}
+        options={{ headerRight: HeaderRightFeed }}
         name="Feed"
         component={Feed}
       />
@@ -66,6 +119,15 @@ const HomeStack = () => {
         })}
         name="Product"
         component={Product}
+      />
+
+      <Stack.Screen
+        options={(props) => ({
+          headerTitle: `Edit / ${props.route.params.name}`,
+          headerRight: () => <HeaderRightEditProduct {...props} />,
+        })}
+        name="EditProduct"
+        component={EditProduct}
       />
     </Stack.Navigator>
   );
