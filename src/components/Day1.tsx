@@ -25,11 +25,7 @@ const Day1 = () => {
         working on your app Open up App.tsx to start working on your app!
       </Text>
 
-      <Button
-        color="orange"
-        title="click me"
-        onPress={() => console.log("fired")}
-      ></Button>
+      <Button color="orange" title="click me" onPress={() => {}}></Button>
       <ActivityIndicator size="large" />
 
       {/* <Image

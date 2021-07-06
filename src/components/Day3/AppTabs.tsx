@@ -1,16 +1,9 @@
-import React from "react";
-import { TabsParamList } from "../../utils/TabsParamList";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Center from "./Center";
-import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import HomeStack from "./HomeStack";
-
-const Search = () => (
-  <Center>
-    <Text>Search</Text>
-  </Center>
-);
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
+import { TabsParamList } from "../../types/TabsParamList";
+import HomeStack from "./Stacks/HomeStack";
+import SearchStack from "./Stacks/SearchStack";
 
 const Tabs = createBottomTabNavigator<TabsParamList>();
 
@@ -41,7 +34,7 @@ const AppTabs: React.FC = ({}) => {
       }}
     >
       <Tabs.Screen name="Home" component={HomeStack} />
-      <Tabs.Screen name="Search" component={Search} />
+      <Tabs.Screen name="Search" component={SearchStack} />
     </Tabs.Navigator>
   );
 };

@@ -3,10 +3,10 @@ import React from "react";
 import { useContext } from "react";
 import { Button, FlatList, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native";
-import { HomeParamList, HomeStackNavProps } from "../../utils/HomeParamList";
-import { tailwind } from "../../utils/tailwind";
-import { AuthContext } from "./AuthProvider";
-import Center from "./Center";
+import { HomeParamList, HomeStackNavProps } from "../../../utils/HomeParamList";
+import { tailwind } from "../../../utils/tailwind";
+import { AuthContext } from "../Provider/AuthProvider";
+import Center from "../Center";
 import faker from "faker";
 import uuid from "react-native-uuid";
 import { useRef } from "react";
@@ -92,7 +92,6 @@ const HeaderRightFeed = () => {
 const HeaderRightEditProduct: React.FC<HomeStackNavProps<"EditProduct">> = ({
   route: { params },
 }) => {
-  console.log("params", params);
   return (
     // @todo Maybe make this a dynamic component for re-usability
     <TouchableOpacity

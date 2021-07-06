@@ -2,9 +2,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useContext } from "react";
 import { Text } from "react-native";
 import { Button, View } from "react-native";
-import { AuthParamList, AuthNavProps } from "../../utils/AuthParamList";
-import { AuthContext } from "./AuthProvider";
-import Center from "./Center";
+import { AuthParamList, AuthNavProps } from "../../../types/AuthParamList";
+import Center from "../Center";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Stack = createStackNavigator<AuthParamList>();
 
